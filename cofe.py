@@ -91,32 +91,32 @@ class CoffeeMachine(Money):
     def dispense(self,order):
         if order.lower() == "espresso" and self.__water > 100 and self.__milk > 200 and self.__coffee > 50 :
             cost = int(input("Please pay Rs.200: "))
-            self.ordermoney(order,cost)  
-            self.__sale += 1
-            self.__coffee -= 50
-            self.__water -= 100
-            self.__milk -= 200 
-            self.prep_order(order,self.__coffee,self.__milk,self.__water,self.passmoney())
+            if self.ordermoney(order,cost):
+                self.__sale += 1
+                self.__coffee -= 50
+                self.__water -= 100
+                self.__milk -= 200 
+                self.prep_order(order,self.__coffee,self.__milk,self.__water,self.passmoney())
 
         if order.lower() == "cappuccino" and self.__water > 50 and self.__milk > 250 and self.__coffee > 80:
             cost = int(input("Please pay Rs.300: "))
-            self.ordermoney(order,cost)
-            self.__coffee -= 50
-            self.__water -= 100
-            self.__milk -= 200 
-            self.__sale += 1
-            self.prep_order(order,self.__coffee,self.__milk,self.__water,self.passmoney())
+            if self.ordermoney(order,cost):
+                self.__coffee -= 50
+                self.__water -= 100
+                self.__milk -= 200 
+                self.__sale += 1
+                self.prep_order(order,self.__coffee,self.__milk,self.__water,self.passmoney())
 
         if order.lower() == "latte" and self.__water > 150 and self.__milk > 150 and self.__coffee > 30:
             cost = int(input("Please pay Rs.150: "))
-            self.ordermoney(order,cost)
-            self.__coffee -= 50
-            self.__water -= 100
-            self.__milk -= 200 
-            self.__sale += 1
-            self.prep_order(order,self.__coffee,self.__milk,self.__water,self.passmoney())
+            if self.ordermoney(order,cost):
+                self.__coffee -= 50
+                self.__water -= 100
+                self.__milk -= 200 
+                self.__sale += 1
+                self.prep_order(order,self.__coffee,self.__milk,self.__water,self.passmoney())
 
-        elif self.__water < 50 and self.__milk < 150 and self.__coffee < 30:
+        elif self.__water < 50 or self.__milk < 150 or self.__coffee < 30:
             print("Sorry Resources to prepare",order.title(),"has depleted..\nNeeds Refil")
 
 
