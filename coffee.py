@@ -32,5 +32,8 @@ try:
             print("Money: Rs.",r[3],sep="")
             print("Sales: ",r[4],sep="")
 
-except ValueError:
-    print("Enter details Correctly")
+        if choice.lower() == "sales":
+            coffee.showSales()
+
+except ValueError as e:
+    print(e)

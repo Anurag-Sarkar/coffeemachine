@@ -57,7 +57,8 @@ class CoffeeMachine(Money):
     def prep_order(order,coffee,milk,water,money):
         row = {"order":order,"coffee left":coffee,"milk left":milk,"water left":water,"Money":money}
         data = json.dumps(row)
-        Path("coffee.json").write_text(data)
+        with open ("coffee.json" ,"a") as coffee:
+            coffee.write(data) 
         print("Preparing Your",order.capitalize())  
         time.sleep(2)
         print("Here's Your",order.title()) 
@@ -120,4 +121,9 @@ class CoffeeMachine(Money):
             print("Sorry Resources to prepare",order.title(),"has depleted..\nNeeds Refil")
 
 
-
+    def showSales(self):
+        with open ("coffee.json" , "r") as coffee:
+            s = coffee.read()
+            data = json.loads(s)
+            print(data)
+        
